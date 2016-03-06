@@ -1244,7 +1244,7 @@ report_intake_closed                    關閉
 report_intake_locked                    鎖定
 report_intakeclosed                     停止收容
 report_intakeclosed_tooltip             監獄已停止收容。開放前都不會收容新的囚犯。
-report_intakenumperday                  每日收容
+report_intakenumperday                  每天收容量
 report_intakenumperday_tooltip          下批收容的囚犯總數。可以自由增減收容人數。\n\n上面的滑標可以調整不同種類的囚犯人數。
 report_intaketotalprisoners             總囚犯數
 report_intaketotalprisoners_tooltip     希望維持的監獄總人數。收容人數會每天以此為目標自動調整。\n\n上面的滑標可以調整不同種類的囚犯人數。
@@ -1254,8 +1254,8 @@ report_intakefillcapacity               填滿收容量
 report_intakefillcapacity_tooltip       盡可能收容囚犯以填滿監獄收容量。\n\n上面的滑標可以調整不同種類的囚犯人數。
 reports_intaketypenone                  關閉
 reports_intaketypefillcapacity          填滿收容量
-reports_intaketypetotalprisoners        囚犯總人數
-reports_intaketypenumperday             間隔天數
+reports_intaketypetotalprisoners        總人數
+reports_intaketypenumperday             每天收容量
 reports_intaketypeallavailable          所有可收容者
 report_intakemaxperdaydecr              <<
 report_intakemaxperdayincr              >>
@@ -1754,9 +1754,9 @@ objective_intake_medsec                 普通犯,
 objective_intake_maxsec                 重刑犯
 objective_intake_deathrow               死刑犯
 objective_intake_typeclosed             關閉
-objective_intake_typefillcapacity       填滿容量
-objective_intake_typetotalprisoners     填滿至 *X
-objective_intake_typenumperday          間隔 *X 天
+objective_intake_typefillcapacity       填滿至可收容量
+objective_intake_typetotalprisoners     填滿至 *X 人
+objective_intake_typenumperday          每天 *X 人
 objective_intake_typeallavailable       所有可收容者
 
 objective_builddeliveriesroom           請指定卸貨區
