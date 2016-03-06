@@ -156,6 +156,7 @@ interfacemode_spawn                           (重生)
 interfacemode_properties                      (屬性)
 interfacemode_cutscenes                       (過場)
 interfacemode_selection                       選擇
+interfacemode_prefabs                         快速建造
 
 interfaceoverlay_security                       保安
 interfaceoverlay_patrols                        巡邏
@@ -199,6 +200,7 @@ interfacelogistics_removejobs                   移除勞動名額
 interfacelogistics_targettingfood               食物分配
 interfacelogistics_targettinglaundry            衣物分配
 interfacelogistics_roomquality                  房間品質
+interfacelogistics_weathermap                   溫度
 
 interfaceplanning_wall							牆
 interfaceplanning_object						物件
@@ -221,8 +223,16 @@ interfacecontraband_alltime                     30天內
 interfacecontraband_informants                  線人
 interfacecontraband_gangs                       幫派
 
+interfacecallout_fireengine                     消防隊員
+interfacecallout_riotpolice                     鎮暴警衛
+interfacecallout_armedpolice                    武裝警衛
+interfacecallout_paramedics                     醫護人員
+interfacecallout_soldiers                       士兵
+
 interfaceclone_copy                             複製
 interfaceclone_paste                            貼上
+interfaceclone_cancel                           取消快速建造
+interfaceclone_clone                            複製
 
 interfacetopbar_todo							待辦事項
 interfacetopbar_balance							存款 *B
@@ -281,11 +291,15 @@ interfacetopbar_prisonercells_supermaxonly      超重刑犯專區容量: *X
 interfacetopbar_prisonercells_deathrowonly      死刑犯專區容量: *X
 interfacetopbar_prisonercells_staffonly         員工專區(無法收容囚犯): *X
 interfacetopbar_prisoners_nocells               有 *X 名囚犯尚未安排牢房
+interfacetopbar_prisonercells_parents           親子犯專區容量: *X
 
 interfacetopbar_cctv_current					目前共有 *C 支攝影機運作中
 interfacetopbar_cctv_cap						尚可安裝 *C 支攝影機
 
 interfacetopbar_tension_currentlevel            目前危險等級為 *X
+interfacetopbar_tension_currentlevellow         低
+interfacetopbar_tension_currentlevelmedium      中
+interfacetopbar_tension_currentlevelhigh        高
 interfacetopbar_tension_increasing              且正在提高中
 interfacetopbar_tension_decreasing              且正在降低中
 interfacetopbar_tension_description             潛在危險因素:
@@ -430,9 +444,13 @@ buildtoolbar_popup_clone				按右鍵選取複製現有的建築設施，然後�
 buildtoolbar_popup_properties			找出是啥在搞鬼。
 buildtoolbar_popup_contraband           顯示違禁品的來源，以及最近沒收的違禁品，另外也會顯示秘密線人和他的相關資料。
 buildtoolbar_popup_grading              檢視監獄在四項重點項目中的評價 - 懲處、教化、保安、醫療，同時顯示囚犯出獄後的再犯率。
+buildtoolbar_popup_prefabs              複製貼上監獄中的現存部分或房間。
 buildtoolbar_popup_room_cell			囚犯居住的地方。
 buildtoolbar_popup_room_holdingcell		當新進囚犯還沒有分配個人牢房時，會先收容在集體牢房內。
 buildtoolbar_popup_room_solitary		禁閉室是獨立的牢房，專門用來監禁壞蛋中的壞蛋。
+buildtoolbar_popup_room_dormitory       可容納多名囚犯的牢房。牢房空間越大可以容納更多囚犯。
+buildtoolbar_popup_room_familycell      囚犯有小孩時居住的牢房。
+buildtoolbar_popup_room_sharedcell      讓多種囚犯居住的牢房。最多可以容納八名囚犯。
 buildtoolbar_popup_room_canteen			囚犯喝下午茶的地方。
 buildtoolbar_popup_room_kitchen			廚師料理準備食物的地方。
 buildtoolbar_popup_room_shower			讓你的囚犯清潔溜溜，不會長蝨子。
@@ -452,6 +470,7 @@ buildtoolbar_popup_room_chapel          當一堆官僚人士聚集在一起，�
 buildtoolbar_popup_room_paroleroom      當囚犯服刑期滿 50% 和 75% 時，就有資格申請假釋，他們的命運將會在這間房間內，由典獄長和保安隊長決定。\n\n建議安排額外的警衛戒備，當犯人知道他們假釋被駁回的時候通常會傷心欲絕。
 buildtoolbar_popup_room_library         全國各地會送一些不要的或使用過的書籍給你的監獄，囚犯要協助將書本分類並上架。
 buildtoolbar_popup_room_intake          囚犯剛抵達的時候會先帶到這裡。
+buildtoolbar_popup_room_nursery         囚犯與嬰兒的活動房間。
 
 buildtoolbar_popup_obj_bed				不會太軟、也不會太硬，硬度剛剛好。嗯，事實上嘛，真的很硬又很小。
 buildtoolbar_popup_obj_toilet			這是基本人權。
@@ -491,6 +510,7 @@ buildtoolbar_popup_obj_dismantleobject	從你的監獄中移除一件物品。
 buildtoolbar_popup_obj_altar            將祈禱者的心聲轉達給至高無上的天神。
 buildtoolbar_popup_obj_pews             信仰者們的座椅，用最堅硬、最不柔軟且沒有軟墊的木頭做成。
 buildtoolbar_popup_obj_prayermat        讓你的囚犯在祈禱的時候不要碰到骯髒的地板。
+buildtoolbar_popup_obj_guardtower       狙擊手（另聘）可以注意監獄狀況的塔。
 
 buildtoolbar_popup_staff_workman		他們會按照你提供的設計，幫你建造你的監獄。
 buildtoolbar_popup_staff_guard			幫你看管囚犯並避免他們滋事。
@@ -505,6 +525,7 @@ buildtoolbar_popup_staff_foreman		監獄高級幹部，負責管理監獄清潔�
 buildtoolbar_popup_staff_psychologist	監獄高級幹部，讓你可以瞭解囚犯們的內心世界。
 buildtoolbar_popup_staff_accountant		監獄高級幹部，提供監獄財務金融報告。
 buildtoolbar_popup_staff_lawyer			監獄高級幹部，協助你扭曲某些法規以獲得更大的監獄控制權。
+buildtoolbar_popup_staff_sniper         一名訓練有素的狙擊手，會自動佔據一座空的守衛塔。\n\n射擊監獄牆內引發暴動的囚犯前，會有幾發警告射擊。試圖逃獄的犯人不會有警告射擊。
 
 buildtoolbar_popup_uts_powerstation		產生監獄所需要的電力。
 buildtoolbar_popup_uts_capacitor		當放置在變電站旁的時候，可以提高變電站產出的電力。
@@ -538,6 +559,7 @@ buildtoolbar_contraband_day             顯示所有過去24小時內沒收的�
 buildtoolbar_contraband_week            顯示所有過去7天內沒收的違禁品。
 buildtoolbar_contraband_alltime         顯示所有過去曾經沒收的違禁品。
 buildtoolbar_contraband_informants      顯示秘密線人提供的各種情報。
+buildtoolbar_contraband_gangs           顯示監獄內的幫派資訊。
 
 buildtoolbar_deployment_Guards          指派警衛駐守區域。
 buildtoolbar_deployment_Patrols         點選並拖曳來設定巡邏路線。\n\n要指派警衛進行巡邏，請再次點選巡邏路徑。\n點選右鍵並拖曳來清除巡邏路徑。
@@ -622,6 +644,7 @@ codex_developer_clearach                (開發者) 重置成就
 codex_contacts                          聯絡
 codex_materials                         素材
 codex_play                              進行遊戲
+codex_play_escape                       進行脫逃模式
 codex_polaroids                         拍立得相片
 codex_introduction                      開場故事
 codex_restartintroduction               重新開始開場故事
@@ -630,7 +653,8 @@ codex_help                              幫助 (wiki)
 codex_opensavefolder                    開啟存檔資料夾
 codex_options							選項
 codex_nitgs								遊戲內的名字
-codex_workshop							分享監獄
+codex_workshop							分享監獄(Steam)
+codex_steamtrending                     最熱門的囚犯(Steam)
 codex_checkforupdates                   檢查更新
 codex_preorder                          現在預購
 codex_termsconditions                   協議與條款
@@ -644,6 +668,7 @@ codex_new_small                         小
 codex_new_medium                        中
 codex_new_large                         大
 codex_new_selectwarden                  選擇典獄長
+codex_new_selectgender                  選擇囚犯性別
 
 codex_options_graphics					畫質
 codex_options_resolution				解析度
@@ -676,6 +701,9 @@ codex_options_apply						套用
 
 codex_options_language					語言 (Language)
 
+codex_options_experimental              實驗性功能
+codex_options_enablevbo                 啟用頂點緩衝物件
+
 codex_enabled                           啟用
 codex_disabled                          停用
 
@@ -704,6 +732,7 @@ codex_tooltip_funds                     你一開始就會有這麼多資金在�
 codex_transfer							移送
 codex_transferring						移送中
 codex_in_prison							目前已收容
+codex_unavailable                       無法使用
 codex_useravatar                        這是我
 codex_tooltip_useravatar                標記這個囚犯就是你，如果你哪天入獄了，這個囚犯就是你的寫照。
 codex_tooltip_flagbio                   檢舉這個生平介紹令人產生反感或是冒犯。
@@ -758,6 +787,7 @@ codex_timelapse_quality_high            高
 codex_timelapse_quality_med             中
 codex_timelapse_quality_low             低
 codex_timelapse_interval_value          遊戲內的 *X 分鐘
+timelapse_caption                       Timelapse recording length *X:*Y, *Z frames recorded, backlog: *T
 
 codex_performance_running				效能測試
 codex_performance_time					剩餘時間: *T秒
@@ -812,8 +842,23 @@ codex_language_failed_download_msg      你所選擇的語言包下載失敗。
 codex_language_searching_workshop       正在搜尋Steam工作坊
 codex_language_community                這些語言包皆由社群創作與維護 - 感謝！
 
+codex_polaroids_new                     NEW
+
 codex_save_confirm                      你確定要用目前監獄覆蓋 *X 嗎？
 codex_researtchapter_confirm            你確定要重新開始章節嗎？\n所有尚未儲存的進度都會遺失。
+
+codex_premadeprisons                    Premade Prisons
+
+codex_trending_more                     ...
+codex_sortbycaption                     Sort By:
+codex_trending_oneday                   一天
+codex_trending_oneweek                  一周
+codex_trending_threemonths              三個月
+codex_trending_sixmonths                六個月
+codex_trending_oneyear                  一年
+codex_trending_alltime                  不限時間
+codex_trending_failedtogetlist          無法獲得監獄列表
+codex_trending_failedtogetlist_msg      Failed to get the list of trending prisons.
 
 # =============================================================================
 # Graphics Change Confirmation
@@ -1016,6 +1061,7 @@ research_removemincellsize              小牢房
 research_reduceexecutionliability       降低行刑責任
 research_legalprep                      法律籌備
 research_legaldefense                   法律辯護
+research_guardtowers                    守衛塔
 
 researchtooltip_warden                  解鎖典獄長，以及整個監獄制度系統，在工具列的員工選單聘僱他。\n\n如同所有管理幹部一樣，他需要一個辦公室才能工作。
 researchtooltip_security                解鎖保安隊長，可以在工具列的員工選單聘僱他。\n保安隊長讓你可以使用部署介面、提供即時的監獄危險等級報告、並預測可能發生的衝突麻煩。\n\n如同所有管理幹部一樣，他需要一個辦公室才能工作。
@@ -1053,6 +1099,7 @@ researchtooltip_removemincellsize       監獄內的牢房需要有一定的空�
 researchtooltip_reduceexecutionliability 透過律師的遊說，可以有效的降低囚犯上訴的機會，讓你盡快開始行刑。
 researchtooltip_legalprep               每個監獄常常都會碰到很多問題，而有些問題會帶來嚴重的法律責任，\n你的律師會開始準備相關的法律文件讓你擺脫麻煩，但這些文件需要事前籌備。
 researchtooltip_legaldefense            你陷入很糟的狀況 - 有大事出包了而你要負責，如果你無法親自解決，你的律師或許可以幫你。完成這項制度開發，可以立刻移除目前可能讓你被開除的警告訊息。
+researchtooltip_guardtowers             解鎖守衛塔和狙擊手，讓訓練有素的狙擊手幫你關注監獄的室外。\n\n狙擊手需要軍械庫才能領取到來福槍。
 
 research_legaldefense_adviser1          看來你的律師準備了一些文件幫你處理了這些麻煩，我想這代表我暫時還不能炒你魷魚。
 research_legaldefense_adviser2          快，趕快把你的監獄整頓好，這些小把戲不是每次都會成功，無法永遠保護你。
@@ -1105,7 +1152,7 @@ unlock_electricity_caption              允許建造變電站和電纜線，能�
 click_to_continue                       點一下繼續...
 incoming_call                           來電...
 
-adviser_name_none                       無
+adviser_name_unknown                    不明
 adviser_name_ceo                        執行長
 adviser_name_warden                     典獄長
 adviser_name_governer                   督察
@@ -1117,7 +1164,7 @@ adviser_name_edwardsinner               愛德華
 adviser_name_edwardinmate               愛德華
 adviser_name_edwardswife                愛德華的老婆 蘇珊
 adviser_name_priest                     牧師
-adviser_name_newsreader                 CDNC新聞網
+adviser_name_newsreader                 CNDC新聞網
 adviser_name_mayor 						卡爾文・海勒 市長
 
 
@@ -1195,8 +1242,21 @@ report_intake_slider_maxsec             調整重刑犯收容比例
 report_intake_slider_deathrow           調整死刑犯收容比例
 report_intake_closed                    關閉
 report_intake_locked                    鎖定
-report_intakemaxperdaydesc              每日新進人數
-report_intakemaxperdaydesc_tooltip      下次收容希望新進的囚犯人數
+report_intakeclosed                     停止收容
+report_intakeclosed_tooltip             監獄已停止收容。開放前都不會收容新的囚犯。
+report_intakenumperday                  每日收容
+report_intakenumperday_tooltip          下批收容的囚犯總數。可以自由增減收容人數。\n\n上面的滑標可以調整不同種類的囚犯人數。
+report_intaketotalprisoners             總囚犯數
+report_intaketotalprisoners_tooltip     希望維持的監獄總人數。收容人數會每天以此為目標自動調整。\n\n上面的滑標可以調整不同種類的囚犯人數。
+report_intakeallavailable               所有可收容者
+report_intakeallavailable_tooltip       所有可收容的囚犯，將在下次收容時抵達。
+report_intakefillcapacity               填滿收容量
+report_intakefillcapacity_tooltip       盡可能收容囚犯以填滿監獄收容量。\n\n上面的滑標可以調整不同種類的囚犯人數。
+reports_intaketypenone                  關閉
+reports_intaketypefillcapacity          填滿收容量
+reports_intaketypetotalprisoners        囚犯總人數
+reports_intaketypenumperday             間隔天數
+reports_intaketypeallavailable          所有可收容者
 report_intakemaxperdaydecr              <<
 report_intakemaxperdayincr              >>
 report_intakemaxperdaynone              無
@@ -1204,6 +1264,8 @@ report_intakemaxperdayall               全部
 reports_intakedelivernow                立刻收容
 report_intakepayment                    費用
 report_intakeall                        全部
+report_intakefill                       填滿至 *X
+report_intakefill_mothers               填滿至 *X (家族牢房不計)
 report_intake_list_tooltip_title        收容分類
 report_intake_list_tooltip              這裡是所有你可以收容的類型列表。\n\n剩餘名額顯示每個分類還有多少犯人等待被收容，這個數字會隨著比例調整增長。\n\n調整比例可以改變不同分類下次要收容的人數。
 report_intake_list_tooltip_dr           \n\n監獄必須要先有特殊設計的死刑犯牢房，才能開始收容死刑犯，死刑犯的收容速度也比一般囚犯來的慢，且死刑犯的剩餘名額也不一定會每日成長。死刑犯的人數是少之又少。
@@ -1258,6 +1320,7 @@ salecondition_failed                    [不合]
 policy_title                            違規事件
 policy_search                           - 搜查 -
 policy_prisoner                         搜身
+policy_prisoner_f                       搜身
 policy_cell                             牢房
 policy_punishment                       懲處規則
 policy_quantity                         時間
@@ -1471,6 +1534,12 @@ contraband_log_detected                 探測器反應
 contraband_log_dog                      警犬反應
 contraband_log_found                    被查獲
 contraband_log_owner                    持有者
+contraband_log_arranged                 Arranged *X hours ago
+
+gangs_guards                            警衛 *X
+gangs_soldiers                          士兵 *X / *Y MAX
+gangs_evict                             EVICT
+gangs_status                            *X 成員 . *Y Kills . $*Z
 
 schedule_zone_shared                    公共區域
 schedule_zone_minseconly                輕刑犯專區
@@ -1539,6 +1608,7 @@ status_effect_angst                     生氣
 status_effect_wounded                   流血
 status_effect_virus                     生病
 status_effect_virusdeadly               重病
+status_effect_overheating               中暑
 
 condition_treated                       已治療
 condition_needstreating                 需要治療
@@ -1582,6 +1652,9 @@ need_name_alcohol                       酒精
 need_name_starving                      飢餓
 need_name_spirituality                  靈性
 need_name_literacy                      文青
+need_name_babysleep                     [嬰兒] 睡眠
+need_name_babyplay                      [嬰兒] 娛樂
+need_name_warmth                        溫暖
 needs_locked                            (需求報告由心理醫師提供)
 needs_title                             =[需求]=
 
@@ -1680,6 +1753,11 @@ objective_intake_minsec                 輕刑犯,
 objective_intake_medsec                 普通犯, 
 objective_intake_maxsec                 重刑犯
 objective_intake_deathrow               死刑犯
+objective_intake_typeclosed             關閉
+objective_intake_typefillcapacity       填滿容量
+objective_intake_typetotalprisoners     填滿至 *X
+objective_intake_typenumperday          間隔 *X 天
+objective_intake_typeallavailable       所有可收容者
 
 objective_builddeliveriesroom           請指定卸貨區
 
@@ -1883,6 +1961,8 @@ object_none                              無
 object_box                               箱子
 object_stack                             貨物堆
 object_bed                               床
+object_bunkbed                           雙層床
+object_crib                              嬰兒床
 object_toilet                            馬桶
 object_table                             桌子
 object_chair                             椅子
@@ -1947,6 +2027,7 @@ object_dog                               警犬
 object_dogcrate                          狗籠
 object_teacher                           教師
 object_soldier                           軍人
+object_sniper                            狙擊手
 object_warden                            典獄長
 object_chief                             保安隊長
 object_foreman                           工頭
@@ -1996,6 +2077,7 @@ object_laundrymachine                    洗衣機
 object_laundrybasket                     洗衣籃
 object_ironingboard                      熨衣板
 object_visitortable                      會客桌
+object_visitortablesecure                會客亭
 object_workshopsaw                       電鋸機
 object_workshoppress                     金屬沖壓車間
 object_carpentertable                    木工桌
@@ -2006,6 +2088,7 @@ object_sofachairdouble                   寬沙發
 object_drinkmachine                      飲料販賣機
 object_arcadecabinet                     電動街機
 object_radio                             收音機
+object_radiator                          暖爐
 object_bookshelflarge                    圖書館書架
 object_weaponrack                        武器架
 object_treestump                         樹樁
@@ -2051,6 +2134,8 @@ object_prisonermailopened                郵件 (已拆封)
 object_shopfront                         商店店面
 object_shopgoods                         商店商品
 object_shopshelf                         商店貨架
+object_playmat                           遊戲墊
+object_guardtower                        守衛塔
 
 material_none                            無
 material_building                        建築物 (磚塊)
@@ -2090,9 +2175,12 @@ material_roof                            屋頂
 
 room_none                                無
 room_cell                                牢房
-room_holdingcell                         集體牢房
+room_holdingcell                         拘留牢房
 room_solitary                            禁閉室
 room_superiorcell                        高級牢房
+room_dormitory                           團體牢房
+room_familycell                          家族牢房
+room_sharedcell                          公共牢房
 room_canteen                             餐廳
 room_kitchen                             廚房
 room_shower                              沐浴間
@@ -2123,6 +2211,7 @@ room_clearrooms                          清除房間
 room_paroleroom                          假釋廳
 room_mailroom                            郵務室
 room_shop                                商店
+room_nursery                             育嬰室
 
 equipment_none                           無
 equipment_fists                          拳頭
@@ -2304,6 +2393,8 @@ doortimer_security_DeathRow             死刑犯
 # Execution
 # =============================================================================
 
+execution_stage_completed               完成
+execution_stage_authorise               授權
 execution_stage_Start                   開始行刑
 execution_stage_Lockdown                啟動全監獄封鎖
 execution_stage_Testing                 最後測試
@@ -2344,7 +2435,9 @@ roomerror_nokitchen                     沒有廚房能供應這個餐廳食物
 roomerror_noprisoners                   沒有囚犯被分配到這個餐廳用餐
 roomerror_nocanteen_cells               此牢房無法通往任何餐廳，囚犯將沒有地方可以用餐
 roomerror_nocanteen_kitchen             此廚房無法通往任何餐廳，因此在用餐時間不會煮飯
-
+roomerror_deathrow_sharedcell           死刑犯需要單人牢房，無法與他人共享牢房。
+roomerror_nonursery                     這間牢房沒有育嬰室。家族牢房需要育嬰室。
+roomerror_laundryoverloaded             洗衣籃無法被卸下。洗衣房可能太小。
 
 # =============================================================================
 # Misc
@@ -2409,6 +2502,17 @@ informant_none                          沒有秘密線人
 informant_hint                          (只能徵召被脅迫的囚犯 - 例如關禁閉中的囚犯)
 informant_recruitable                   (可能的秘密線人)
 informant_target                        目標
+informant_coverage                      涵蓋範圍 *X%
+informant_dead                          死亡
+informant_released                      Released
+informant_coverblown                    COVER BLOWN
+informant_activate                      Activate
+informant_deactivate                    Deactivate
+informant_idle                          發呆
+informant_onroute                       On Route...
+informant_active                        Active
+informant_coveragecaps                  涵蓋範圍 *X%
+
 
 contraband_owner                        持有者: *X
 contraband_ownerunknown                 持有者不明
@@ -2463,6 +2567,9 @@ family_priest                           牧師
 family_victims                          受害者家屬
 family_caption                          家人: 
 family_none                             無
+family_husband                          丈夫
+family_exhusband                        前夫
+family_boyfriend                        男友
 
 damage_dead                             死亡
 damage_unconscious                      失去意識
@@ -2475,20 +2582,49 @@ message_autosaving                      自動儲存中...
 buildtoolbar_entersearchterm            輸入搜尋...
 
 deploymentscheduler_title               部署排程
+deploymentscheduler_patrolonly          [Schedule *X only]
+deploymentscheduler_schedulenow         Showing deployment NOW
+deploymentscheduler_scheduletime        Showing deployment for *X.00 - *Y.00
 supplyanddemand_supplyheader            供給
 supplyanddemand_demandheader            需求
 
 tooltip_multipleobjects                 按 TAB 切換物件
 remotedoor_noservo                      如果沒有正確安裝門禁伺服器，遙控門就無法開啟。
 
+targettingfood_prisonersassigned        Prisoners assigned : *X
+targettingfood_predicteddemand          = 預期需求 =
+targettingfood_demand                   需求 *X
+targettingfood_supply                   供應 *X (+*Y)
+targettingfood_prisoners                prisoners
+targettingfood_required                 膳食需求 : *X
+targettingfood_ready                    膳食準備 : *X
+targettingfood_cooked                   膳食已烹飪 : *X
+
 roomgrading                             房間評鑑
-roomgrading_roomsize                    此房間需要至少 *X 平方公尺
-roomgrading_cleanliness                 清潔程度 *X% 以上
-roomgrading_outsidewindow               對外窗戶
-roomgrading_item                        物品: *X
+roomgrading_cell_roomsize               此房間需要至少 *X 平方公尺
+roomgrading_cell_cleanliness            清潔程度 *X% 以上
+roomgrading_cell_outsidewindow          對外窗戶
+roomgrading_cell_item                   物品: *X
+
+roomgrading_dormitory_roomsize          房間至少每位囚犯 *X 平方公尺
+roomgrading_dormitory_cleanliness       清潔程度 *X% 以上
+roomgrading_dormitory_outsidewindow     每八名囚犯一扇對外窗戶
+roomgrading_dormitory_item              物品: 每四位囚犯 1 *X
+
+roomgrading_sharedcell_roomsize          房間至少每位囚犯 *X 平方公尺
+roomgrading_sharedcell_cleanliness       清潔程度 *X% 以上
+roomgrading_sharedcell_outsidewindow     對外窗戶
+roomgrading_sharedcell_item              物品: 每四位囚犯 1 *X
+
 roomgrading_result                      等級 *X
 roomgrading_currentoccupant             此房間使用者等級 *X
 roomgrading_unoccupied                  未使用
+roomgrading_shared_occupuants           目前使用者: *X / *Y
+
+weathermap_temperature_title            溫度
+weathermap_temperature_text             *CC / *FF
+weathermap_temperature_c                *CC
+weathermap_temperature_f                *FF
 
 roomerror_nokitchen                     沒有廚房能供應這個餐廳食物
 roomerror_noprisoners                   沒有囚犯被分配到這個餐廳用餐
@@ -2496,6 +2632,13 @@ roomerror_nocanteen_cells               此牢房無法通往任何餐廳，囚�
 roomerror_nocanteen_kitchen             此廚房無法通往任何餐廳，因此在用餐時間不會煮飯
 
 ceos_letter                             親愛的先生 / 女士，\n\n\n恭喜你完成基本訓練，你現在是一個完全合格的監獄建築師了！接下來，你將\n要從什麼都沒有的空地，開始設計、建造並經營你自己的監獄。在你開始之前\n，我想分享一些我的經驗給你。\n\n\n\n1. 每座監獄都需要一個典獄長，他會是你第一個聘僱的員工，給他蓋一間舒適\n的辦公室，讓他能建立整個監獄制度，提供一整系列的進階監獄設施。\n\n\n2. 個人牢房造價很貴，尤其是一開始手頭很緊的時候。一開始建議先蓋一間集\n體牢房，一次容納多名囚犯可以省一些錢。\n\n\n3. 在第一名囚犯抵達之前，把廚房跟餐廳蓋好，記得還要聘僱幾名廚師，沒有\n什麼比餓肚子還要更能惹惱一名囚犯了！\n\n\n4. 建造一間監獄是一項耗資巨大的工程，你必須要熟悉政府輔助計畫和合約贊\n助，才能募集足夠的資金，你可以在「監獄報告」裡面看到這些項目。\n\n\n\n這些大概就是全部了 - 祝你好運！\n\n\n執行長，\n監獄建築公司
+
+quickbuild_basiccell                    基本牢房
+quickbuild_solitarycell                 禁閉牢房
+quickbuild_office                       辦公室
+quickbuild_luxurycell                   豪華牢房
+quickbuild_sharedcell                   共享牢房
+
 
 # =============================================================================
 # Campaign info
